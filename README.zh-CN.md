@@ -20,7 +20,7 @@
 
 1. 克隆仓库：
    ```bash
-   git clone https://github.com/YOUR_USERNAME/proxy-manager-extension.git
+   git clone https://github.com/heightnabdav-commits/Proxy-Manager.git
    ```
 2. 打开 Chrome 浏览器，访问 `chrome://extensions/`
 3. 右上角开启 **开发者模式**
