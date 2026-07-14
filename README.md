@@ -20,7 +20,7 @@ A Chrome extension for HTTP/HTTPS/SOCKS5 proxy management. Supports multiple pro
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/proxy-manager-extension.git
+   git clone https://github.com/heightnabdav-commits/Proxy-Manager.git
    ```
 2. Open Chrome and navigate to `chrome://extensions/`
 3. Enable **Developer mode** (toggle in the top right)
