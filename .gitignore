@@ -1,0 +1,16 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Node (if used for tooling)
+node_modules/
+package-lock.json
+
+# Build artifacts
+*.crx
+*.pem
+*.zip
