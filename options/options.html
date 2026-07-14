@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proxy Manager - 高级设置</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Proxy Manager 高级设置</h1>
+    </header>
+
+    <!-- 标签页导航 -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="proxies">代理管理</button>
+      <button class="tab" data-tab="rules">规则分流</button>
+      <button class="tab" data-tab="pac">PAC 设置</button>
+      <button class="tab" data-tab="import-export">导入/导出</button>
+    </nav>
+
+    <!-- 代理管理 -->
+    <section class="tab-content active" id="tab-proxies">
+      <div class="proxy-list" id="proxy-list"></div>
+      <div class="form-card">
+        <h3 id="proxy-form-title">添加代理</h3>
+        <input type="hidden" id="edit-proxy-id">
+        <div class="form-group">
+          <label>名称</label>
+          <input type="text" id="opt-proxy-name" placeholder="例如：工作代理">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>协议</label>
+            <select id="opt-proxy-scheme">
+              <option value="http">HTTP</option>
+              <option value="https">HTTPS</option>
+              <option value="socks5">SOCKS5</option>
+            </select>
+          </div>
+          <div class="form-group flex-2">
+            <label>地址</label>
+            <input type="text" id="opt-proxy-host" placeholder="127.0.0.1">
+          </div>
+          <div class="form-group">
+            <label>端口</label>
+            <input type="number" id="opt-proxy-port" placeholder="8080" min="1" max="65535">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>用户名（可选）</label>
+            <input type="text" id="opt-proxy-user" placeholder="用户名">
+          </div>
+          <div class="form-group">
+            <label>密码（可选）</label>
+            <input type="password" id="opt-proxy-pass" placeholder="密码">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>绕过列表（可选，每行一个）</label>
+          <textarea id="opt-proxy-bypass" rows="3" placeholder="<local>&#10;192.168.*&#10;*.internal.com"></textarea>
+        </div>
+        <div class="form-actions">
+          <button id="btn-save-proxy" class="btn-primary">保存</button>
+          <button id="btn-cancel-proxy" class="btn-secondary">取消</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 规则分流 -->
+    <section class="tab-content" id="tab-rules">
+      <div class="form-group">
+        <label>规则模式</label>
+        <select id="rule-mode">
+          <option value="blacklist">黑名单模式（匹配的走代理，其余直连）</option>
+          <option value="whitelist">白名单模式（匹配的直连，其余走代理）</option>
+        </select>
+      </div>
+      <div class="rule-list" id="rule-list"></div>
+      <div class="form-card">
+        <h3>添加规则</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>类型</label>
+            <select id="rule-type">
+              <option value="domain">域名</option>
+              <option value="url">URL 模式</option>
+              <option value="cidr">IP 段</option>
+            </select>
+          </div>
+          <div class="form-group flex-2">
+            <label>值</label>
+            <input type="text" id="rule-value" placeholder="*.google.com">
+          </div>
+        </div>
+        <div class="form-row cidr-fields hidden">
+          <div class="form-group">
+            <label>网络地址</label>
+            <input type="text" id="rule-network" placeholder="192.168.1.0">
+          </div>
+          <div class="form-group">
+            <label>子网掩码</label>
+            <input type="text" id="rule-mask" placeholder="255.255.255.0">
+          </div>
+        </div>
+        <button id="btn-add-rule" class="btn-primary">添加规则</button>
+      </div>
+      <div class="form-actions save-rules-actions">
+        <button id="btn-save-rules" class="btn-primary">保存规则</button>
+      </div>
+    </section>
+
+    <!-- PAC 设置 -->
+    <section class="tab-content" id="tab-pac">
+      <div class="form-group">
+        <label>PAC URL（在线 PAC 文件地址）</label>
+        <input type="text" id="pac-url" placeholder="https://example.com/proxy.pac">
+      </div>
+      <div class="divider">或</div>
+      <div class="form-group">
+        <label>自定义 PAC 脚本</label>
+        <textarea id="pac-script" rows="15" placeholder="function FindProxyForURL(url, host) {&#10;  return 'DIRECT';&#10;}"></textarea>
+      </div>
+      <div class="form-actions">
+        <button id="btn-save-pac" class="btn-primary">保存 PAC 设置</button>
+      </div>
+    </section>
+
+    <!-- 导入/导出 -->
+    <section class="tab-content" id="tab-import-export">
+      <div class="form-group">
+        <label>导出配置</label>
+        <p class="help-text">将所有代理配置和规则导出为 JSON 文件</p>
+        <button id="btn-export" class="btn-primary">导出配置</button>
+      </div>
+      <div class="form-group import-section">
+        <label>导入配置</label>
+        <p class="help-text">从 JSON 文件导入代理配置和规则</p>
+        <input type="file" id="file-import" accept=".json">
+        <button id="btn-import" class="btn-primary btn-import-action">导入配置</button>
+      </div>
+    </section>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
