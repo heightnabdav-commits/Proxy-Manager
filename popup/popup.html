@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proxy Manager</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Proxy Manager</h1>
+    </header>
+
+    <!-- 模式切换 -->
+    <section class="mode-section">
+      <div class="mode-btn active" data-mode="direct">
+        <span class="mode-icon">🔗</span>
+        <span class="mode-label">直连</span>
+      </div>
+      <div class="mode-btn" data-mode="global">
+        <span class="mode-icon">🌐</span>
+        <span class="mode-label">全局</span>
+      </div>
+      <div class="mode-btn" data-mode="rules">
+        <span class="mode-icon">📋</span>
+        <span class="mode-label">规则</span>
+      </div>
+      <div class="mode-btn" data-mode="pac">
+        <span class="mode-icon">📜</span>
+        <span class="mode-label">PAC</span>
+      </div>
+    </section>
+
+    <!-- 当前代理 -->
+    <section class="proxy-section">
+      <h2>当前代理</h2>
+      <select id="proxy-select">
+        <option value="">-- 无代理 --</option>
+      </select>
+    </section>
+
+    <!-- 快速添加代理 -->
+    <section class="add-proxy-section">
+      <h2>快速添加</h2>
+      <div class="form-row">
+        <input type="text" id="proxy-name" placeholder="名称">
+      </div>
+      <div class="form-row">
+        <select id="proxy-scheme">
+          <option value="http">HTTP</option>
+          <option value="https">HTTPS</option>
+          <option value="socks5">SOCKS5</option>
+        </select>
+        <input type="text" id="proxy-host" placeholder="地址">
+        <input type="number" id="proxy-port" placeholder="端口" min="1" max="65535">
+      </div>
+      <div class="form-row">
+        <input type="text" id="proxy-user" placeholder="用户名（可选）">
+        <input type="password" id="proxy-pass" placeholder="密码（可选）">
+      </div>
+      <button id="btn-add-proxy" class="btn-primary">添加</button>
+    </section>
+
+    <!-- 底部操作 -->
+    <footer>
+      <button id="btn-options" class="btn-link">高级设置</button>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
